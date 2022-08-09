@@ -5,6 +5,7 @@ class ArtRoute extends StatelessWidget {
   // const ArtRoute({Key? key}) : super(key: key);
 
   final String art;
+  static int _currentIndex = 0;
 
   ArtRoute({required this.art});
 
@@ -75,6 +76,27 @@ class ArtRoute extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.lime,
+        currentIndex: _currentIndex,
+        onTap: (value) {
+          String artist = ArtUtil.menuItems[value];
+          _currentIndex = value;
+          changeRoute(context, artist);
+        },
+        items: const [
+          BottomNavigationBarItem(
+            label: ArtUtil.CARAVAGGIO,
+            icon: Icon(Icons.art_track),
+          ),
+          BottomNavigationBarItem(
+            label: ArtUtil.MONET,
+            icon: Icon(Icons.art_track),
+          ),
+          BottomNavigationBarItem(
+              label: ArtUtil.VANGOGH, icon: Icon(Icons.art_track)),
+        ],
       ),
     );
   }
